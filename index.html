@@ -18,13 +18,11 @@ body{background:var(--black);color:var(--text);font-family:'Share Tech Mono',mon
 .scanline{position:fixed;inset:0;pointer-events:none;z-index:200;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,255,65,.01) 2px,rgba(0,255,65,.01) 4px);}
 
 /* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1rem 3rem;background:rgba(0,0,0,.93);border-bottom:1px solid var(--border2);}
-.logo{font-family:'Orbitron',monospace;font-size:.95rem;font-weight:900;color:var(--matrix);letter-spacing:.12em;text-transform:uppercase;text-shadow:0 0 20px rgba(0,255,65,.5);cursor:pointer;}
-.nav-links{display:flex;gap:1.8rem;list-style:none;}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:1rem 3rem;background:rgba(0,0,0,.93);border-bottom:1px solid var(--border2);}
+.logo{font-family:'Orbitron',monospace;font-size:.95rem;font-weight:900;color:var(--matrix);letter-spacing:.12em;text-transform:uppercase;text-shadow:0 0 20px rgba(0,255,65,.5);cursor:pointer;justify-self:start;}
+.nav-links{display:flex;gap:1.8rem;list-style:none;justify-self:center;}
 .nav-links a{color:var(--muted);text-decoration:none;font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;transition:color .2s;cursor:pointer;padding:.3rem 0;border-bottom:1px solid transparent;}
 .nav-links a:hover,.nav-links a.active{color:var(--matrix);border-bottom-color:var(--matrix);}
-.nav-cta{background:transparent;color:var(--matrix);border:1px solid var(--matrix);padding:.5rem 1.2rem;font-family:'Share Tech Mono',monospace;font-size:.72rem;text-decoration:none;letter-spacing:.1em;transition:all .2s;text-transform:uppercase;cursor:pointer;}
-.nav-cta:hover{background:var(--matrix);color:#000;box-shadow:0 0 18px rgba(0,255,65,.5);}
 
 /* PAGE SYSTEM */
 .page{display:none;min-height:100vh;padding-top:65px;position:relative;z-index:1;}
@@ -212,11 +210,20 @@ select.form-input option{background:var(--deep);}
 .avail-text span{color:var(--matrix);}
 
 /* PATREON */
-.support-band{background:var(--deep);border-top:1px solid var(--border2);border-bottom:1px solid var(--border2);padding:3rem;display:flex;justify-content:space-between;align-items:center;gap:2rem;flex-wrap:wrap;position:relative;z-index:1;}
-.support-band h3{font-size:1.1rem;margin-bottom:.5rem;}
-.support-band p{font-size:.82rem;color:var(--muted);max-width:500px;line-height:1.7;}
-.patreon-btn{background:transparent;color:var(--matrix);border:1px solid var(--matrix);padding:1rem 1.8rem;font-family:'Share Tech Mono',monospace;font-size:.78rem;text-decoration:none;letter-spacing:.1em;white-space:nowrap;transition:all .2s;display:inline-flex;align-items:center;gap:.6rem;text-transform:uppercase;cursor:pointer;}
-.patreon-btn:hover{background:var(--matrix);color:#000;box-shadow:0 0 24px rgba(0,255,65,.4);}
+.patreon-section{background:var(--deep);border-top:1px solid var(--border2);border-bottom:1px solid var(--border2);padding:4rem 3rem;position:relative;z-index:1;overflow:hidden;}
+.patreon-section::before{content:'PATREON://ACCESS_GRANTED';position:absolute;top:1.2rem;right:2rem;font-size:.58rem;color:var(--border2);letter-spacing:.12em;}
+.patreon-inner{display:grid;grid-template-columns:1fr auto;gap:4rem;align-items:center;}
+.patreon-left h3{font-family:'Orbitron',monospace;font-size:1.5rem;font-weight:900;color:var(--matrix);text-shadow:0 0 20px rgba(0,255,65,.3);margin-bottom:.8rem;letter-spacing:.05em;}
+.patreon-left .patreon-sub{font-size:.88rem;color:var(--text);line-height:1.8;max-width:580px;margin-bottom:1.5rem;}
+.patreon-perks{display:flex;gap:.6rem;flex-wrap:wrap;margin-bottom:0;}
+.perk{background:var(--surface2);border:1px solid var(--border2);padding:.35rem .85rem;font-size:.68rem;color:var(--matrix-dim);letter-spacing:.12em;display:inline-flex;align-items:center;gap:.4rem;}
+.perk::before{content:'✓';color:var(--matrix);}
+.patreon-right{display:flex;flex-direction:column;align-items:center;gap:1.2rem;}
+.patreon-btn{background:var(--matrix);color:#000;border:none;padding:1.1rem 2.2rem;font-family:'Share Tech Mono',monospace;font-size:.85rem;font-weight:700;text-decoration:none;letter-spacing:.12em;white-space:nowrap;transition:all .2s;display:inline-flex;align-items:center;gap:.7rem;text-transform:uppercase;cursor:pointer;}
+.patreon-btn:hover{background:#fff;box-shadow:0 0 32px rgba(0,255,65,.5);}
+.patreon-note{font-size:.65rem;color:var(--muted);letter-spacing:.1em;text-align:center;}
+.patreon-note span{color:var(--matrix);}
+.patreon-counter{font-family:'Orbitron',monospace;font-size:.68rem;color:var(--matrix-dim);letter-spacing:.15em;text-align:center;}
 
 /* FOOTER */
 footer{border-top:1px solid var(--border);padding:1.8rem 3rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;position:relative;z-index:1;background:var(--black);}
@@ -248,7 +255,7 @@ footer{border-top:1px solid var(--border);padding:1.8rem 3rem;display:flex;justi
     <li><a onclick="navigate('blog')" data-page="blog">Blog</a></li>
     <li><a onclick="navigate('contact')" data-page="contact">Contact</a></li>
   </ul>
-  <button class="nav-cta" onclick="navigate('contact')">[Hire_Me]</button>
+
 </nav>
 
 <!-- ============================================================ HOME ============================================================ -->
@@ -308,13 +315,29 @@ footer{border-top:1px solid var(--border);padding:1.8rem 3rem;display:flex;justi
     </div>
   </section>
 
-  <div class="support-band">
-    <div>
-      <div class="section-tag">Patreon</div>
-      <h3>BACK THE BUILD</h3>
-      <p>Support my work on Patreon — suggest ideas, commission custom projects, and get direct access. Pricing varies by project complexity.</p>
+  <div class="patreon-section">
+    <div class="patreon-inner">
+      <div class="patreon-left">
+        <div class="section-tag">Patreon</div>
+        <h3>JOIN THE BUILD.</h3>
+        <p class="patreon-sub">
+          I build everything in public — no corporate budget, no team, just one self-taught engineer turning ideas into reality. Your support on Patreon is what keeps the projects coming. In return, you get <strong style="color:var(--matrix)">direct access</strong> to the process, the engineer, and the work before anyone else sees it.
+        </p>
+        <div class="patreon-perks">
+          <span class="perk">Suggest future projects</span>
+          <span class="perk">Commission custom builds</span>
+          <span class="perk">Early access to all work</span>
+          <span class="perk">Direct message access</span>
+          <span class="perk">Behind-the-scenes updates</span>
+          <span class="perk">Name in project credits</span>
+        </div>
+      </div>
+      <div class="patreon-right">
+        <a href="http://patreon.com/mathieuengineering" class="patreon-btn" target="_blank">♥ SUPPORT ON PATREON</a>
+        <div class="patreon-note">Starts at <span>any amount</span> you choose</div>
+        <div class="patreon-counter">// FUNDING THE MISSION</div>
+      </div>
     </div>
-    <a href="http://patreon.com/mathieuengineering" class="patreon-btn" target="_blank">♥ SUPPORT_ON_PATREON</a>
   </div>
 
   <section>
@@ -392,9 +415,29 @@ footer{border-top:1px solid var(--border);padding:1.8rem 3rem;display:flex;justi
     </div>
   </div>
 
-  <div class="support-band">
-    <div><div class="section-tag">Support</div><h3>FUEL THE MISSION</h3><p>Back me on Patreon to get direct access, suggest projects, and commission custom engineering work.</p></div>
-    <a href="http://patreon.com/mathieuengineering" class="patreon-btn" target="_blank">♥ SUPPORT_ON_PATREON</a>
+  <div class="patreon-section">
+    <div class="patreon-inner">
+      <div class="patreon-left">
+        <div class="section-tag">Support the Mission</div>
+        <h3>THIS RUNS ON BELIEF.</h3>
+        <p class="patreon-sub">
+          No degree. No venture capital. No safety net. Just a builder who refuses to stop. Every project on this site was funded by time, curiosity, and the support of people who believe that passion beats credentials. If that resonates — join us on Patreon and <strong style="color:var(--matrix)">become part of what gets built next.</strong>
+        </p>
+        <div class="patreon-perks">
+          <span class="perk">Shape the roadmap</span>
+          <span class="perk">Commission custom work</span>
+          <span class="perk">Direct engineer access</span>
+          <span class="perk">Exclusive updates</span>
+          <span class="perk">Early project previews</span>
+          <span class="perk">Credits in every release</span>
+        </div>
+      </div>
+      <div class="patreon-right">
+        <a href="http://patreon.com/mathieuengineering" class="patreon-btn" target="_blank">♥ SUPPORT ON PATREON</a>
+        <div class="patreon-note">Cancel anytime. <span>No commitment.</span></div>
+        <div class="patreon-counter">// BUILD SOMETHING TOGETHER</div>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -487,7 +530,7 @@ footer{border-top:1px solid var(--border);padding:1.8rem 3rem;display:flex;justi
     <div class="contact-info-wrap">
       <div class="section-tag">Info</div>
       <h3 style="margin-bottom:2rem;">DIRECT_CHANNELS</h3>
-      <div class="info-item"><span class="info-icon">@</span><div class="info-text"><strong>Email</strong><a href="/cdn-cgi/l/email-protection#b7dad6c3dfded2c299d2d9d0ded9d2d2c5ded9d099d4d8dac7d6d9cef7d0dad6dedb99d4d8da"><span class="__cf_email__" data-cfemail="caa7abbea2a3afbfe4afa4ada3a4afafb8a3a4ade4a9a5a7baaba4b38aada7aba3a6e4a9a5a7">[email&#160;protected]</span></a></div></div>
+      <div class="info-item"><span class="info-icon">@</span><div class="info-text"><strong>Email</strong><a href="/cdn-cgi/l/email-protection#3f525e4b57565a4a115a515856515a5a4d565158115c50524f5e51467f58525e5653115c5052"><span class="__cf_email__" data-cfemail="771a16031f1e1202591219101e191212051e19105914181a0716190e37101a161e1b5914181a">[email&#160;protected]</span></a></div></div>
       <div class="info-item"><span class="info-icon">P</span><div class="info-text"><strong>Patreon</strong><a href="http://patreon.com/mathieuengineering" target="_blank">patreon.com/mathieuengineering</a></div></div>
       <div class="info-item"><span class="info-icon">#</span><div class="info-text"><strong>Location</strong><span style="color:var(--muted);">Blainville, Quebec, Canada</span></div></div>
       <div class="info-item"><span class="info-icon">~</span><div class="info-text"><strong>Response Time</strong><span style="color:var(--muted);">Usually within 24–48 hours</span></div></div>
